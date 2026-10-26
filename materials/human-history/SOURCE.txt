@@ -1,0 +1,13 @@
+Footage: Dramatic Sunlit Ancient Ruins in Monochrome
+Creator: Baris Ipekci (Barış İpekçi)
+Source: https://www.pexels.com/video/dramatic-sunlit-ancient-ruins-in-monochrome-38836636/
+License: Pexels License - https://www.pexels.com/license/
+Downloaded: 2026-10-27
+
+Original: ancient-ruins-original.mp4
+Upload-ready copy: human-history-ancient-ruins-portrait.mp4
+Changes: trimmed to the first 10 seconds, resized to 1080 x 1920,
+encoded as H.264 MP4 at 30 fps, audio removed for the app's narration/music.
+
+Use as illustrative ancient-civilization footage for human-history content.
+It does not depict biological human evolution.
