@@ -835,6 +835,21 @@ def _publish_tts_ffmpeg_output(
 
 
 
+def fit_audio_duration(audio_file: str, output_file: str, seconds: int) -> bool:
+    """Pad/trim an owned PCM WAV copy without changing narration timestamps."""
+    from app.models.const import MAX_VIDEO_DURATION
+
+    if not 1 <= seconds <= MAX_VIDEO_DURATION:
+        raise ValueError(f"video duration must be between 1 and {MAX_VIDEO_DURATION}")
+    ensure_file_path_exists(output_file)
+    command = [
+        utils.get_ffmpeg_binary(), "-nostdin", "-v", "error", "-y",
+        "-i", audio_file, "-vn", "-af", f"apad,atrim=duration={seconds}",
+        "-codec:a", "pcm_s16le",
+    ]
+    return _publish_tts_ffmpeg_output(command, output_file, "video duration adjustment")
+
+
 def apply_audio_volume(audio_file: str, output_file: str, volume: float) -> bool:
     """Encode narration export gain to a caller-owned destination."""
     if not math.isfinite(volume) or volume < 0:

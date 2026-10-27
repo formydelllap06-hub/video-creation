@@ -4,7 +4,7 @@ from unittest.mock import patch
 from streamlit.testing.v1 import AppTest
 
 from app.config import config
-from app.services import voice
+from app.services import llm, voice
 
 
 ROOT_DIR = Path(__file__).parent.parent.parent
@@ -29,6 +29,32 @@ def _new_app():
     app.run()
     assert [str(item.value) for item in app.exception] == []
     return app
+
+
+def test_custom_duration_controls_support_ninety_seconds():
+    with (
+        patch.object(config, "app", dict(config.app, video_source="local", llm_provider="ollama")),
+        patch.object(config, "ui", dict(config.ui, language="en", video_duration=0)),
+        patch.object(config, "try_save_config", return_value=True),
+        patch.object(voice, "get_all_azure_voices", return_value=["en-US-JennyNeural-Female"]),
+        patch.object(llm, "generate_script", return_value="A complete history narration.") as generate,
+        patch.object(llm, "generate_terms", return_value=["history"]),
+    ):
+        app = _new_app()
+        duration = _widget_by_key(app.number_input, "video_duration_input")
+        assert duration.min == 0
+        assert duration.max == 90
+        duration.set_value(90).run()
+        _widget_by_key(app.text_area, "video_subject").set_value("Human history")
+        _widget_by_key(app.button, "auto_generate_script").click().run()
+        assert generate.call_args.kwargs["video_duration"] == 90
+        _widget_by_key(app.selectbox, "video_clip_duration_select").set_value(90).run()
+        assert not app.exception
+        assert config.ui["video_duration"] == 90
+        assert config.ui["video_clip_duration"] == 90
+        fresh = _new_app()
+        assert _widget_by_key(fresh.number_input, "video_duration_input").value == 90
+        assert _widget_by_key(fresh.selectbox, "video_clip_duration_select").value == 90
 
 
 def test_reusable_generation_settings_survive_a_new_webui_session():
@@ -70,6 +96,7 @@ def test_reusable_generation_settings_survive_a_new_webui_session():
             "en-US"
         )
         _widget_by_key(first_session.slider, "paragraph_number_input").set_value(3)
+        _widget_by_key(first_session.number_input, "video_duration_input").set_value(47)
         _widget_by_key(first_session.text_area, "video_script_prompt").set_value(
             "Keep the hook concise."
         )
@@ -138,6 +165,7 @@ def test_reusable_generation_settings_survive_a_new_webui_session():
         assert [str(item.value) for item in first_session.exception] == []
 
         expected_defaults = {
+            "video_duration": 47,
             "video_language": "en-US",
             "paragraph_number": 3,
             "video_script_prompt": "Keep the hook concise.",
@@ -172,6 +200,7 @@ def test_reusable_generation_settings_survive_a_new_webui_session():
         assert "video_terms" not in test_app_config
 
         second_session = _new_app()
+        assert _widget_by_key(second_session.number_input, "video_duration_input").value == 47
         assert _widget_by_key(
             second_session.selectbox, "script_language_select"
         ).value == "en-US"

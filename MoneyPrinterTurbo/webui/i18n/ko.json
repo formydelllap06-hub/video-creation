@@ -110,6 +110,8 @@
     "Static Image": "정지",
     "Slow Zoom": "느린 확대",
     "Image Motion Help": "정지 이미지에만 적용됩니다. 클립 간 전환은 별도로 설정합니다.",
+    "Final Video Duration": "최종 동영상 길이 (초; 0 = 자동)",
+    "Final Video Duration Help": "1–90초를 선택하거나 내레이션 길이에 맞추려면 0을 선택하세요. 대본을 생성하기 전에 길이를 선택하세요. 내레이션이 짧으면 영상과 음악이 계속 재생되고, 길면 잘립니다.",
     "Clip Duration": "클립 최대 길이 (초)",
     "Clip Duration Help": "합성에 사용되는 각 클립의 길이를 조절합니다. 전체 영상 길이가 아닙니다.",
     "Clip Speed": "클립 재생 속도",

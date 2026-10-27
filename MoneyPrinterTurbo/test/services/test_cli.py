@@ -618,6 +618,8 @@ class TestCli(unittest.TestCase):
                 "fade-in",
                 "--video-clip-duration",
                 "4",
+                "--video-duration",
+                "90",
                 "--match-materials-to-script",
                 "--voice-volume",
                 "1.2",
@@ -643,6 +645,7 @@ class TestCli(unittest.TestCase):
         self.assertEqual(params.video_concat_mode, "sequential")
         self.assertEqual(params.video_transition_mode, "FadeIn")
         self.assertEqual(params.video_clip_duration, 4)
+        self.assertEqual(params.video_duration, 90)
         self.assertTrue(params.match_materials_to_script)
         self.assertEqual(params.voice_volume, 1.2)
         self.assertEqual(params.voice_rate, 1.1)

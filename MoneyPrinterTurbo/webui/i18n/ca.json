@@ -110,6 +110,8 @@
     "Static Image": "Estàtica",
     "Slow Zoom": "Ampliació lenta",
     "Image Motion Help": "Només afecta les imatges fixes. Les transicions entre clips es configuren per separat.",
+    "Final Video Duration": "Durada del vídeo final (segons; 0 = automàtic)",
+    "Final Video Duration Help": "Trieu entre 1 i 90 segons, o 0 per seguir la narració. Trieu la durada abans de generar el guió. Si la narració és curta, les imatges i la música continuen; si és llarga, es retalla.",
     "Clip Duration": "Durada màxima de cada clip (s)",
     "Clip Duration Help": "Limita la durada de cada clip, no la durada total del vídeo.",
     "Clip Speed": "Velocitat dels clips",

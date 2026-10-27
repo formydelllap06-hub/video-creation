@@ -110,6 +110,8 @@
     "Static Image": "Statisch",
     "Slow Zoom": "Langsamer Zoom",
     "Image Motion Help": "Gilt nur für Standbilder. Übergänge zwischen Clips werden separat eingestellt.",
+    "Final Video Duration": "Dauer des fertigen Videos (Sekunden; 0 = automatisch)",
+    "Final Video Duration Help": "Wählen Sie 1–90 Sekunden oder 0 für die Länge des Sprechertexts. Wählen Sie die Dauer vor dem Erstellen des Skripts. Bei kürzerem Sprechertext laufen Bild und Musik weiter; längerer Text wird abgeschnitten.",
     "Clip Duration": "Max. Dauer pro Clip (Sek.)",
     "Clip Duration Help": "Legt die Dauer jedes verwendeten Clips fest, nicht die Gesamtlänge des Videos.",
     "Clip Speed": "Clip-Geschwindigkeit",

@@ -114,6 +114,8 @@
     "Static Image": "Static",
     "Slow Zoom": "Slow Zoom",
     "Image Motion Help": "Only affects still images. Clip transitions are configured separately.",
+    "Final Video Duration": "Final Video Duration (seconds; 0 = auto)",
+    "Final Video Duration Help": "Choose 1–90 seconds, or 0 to follow the narration. Choose the duration before generating your script. Short narration leaves footage and music playing; longer narration is trimmed.",
     "Clip Duration": "Maximum Clip Duration (seconds)",
     "Clip Duration Help": "Controls the duration of each clip used in the composition, not the total video length.",
     "Clip Speed": "Clip Speed",

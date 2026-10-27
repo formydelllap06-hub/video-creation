@@ -789,6 +789,7 @@ open_task_folder_on_completion = true
 # video_aspect_pexels = "9:16"       # Stored separately for each video source.
 # video_fit_mode = "cover"           # "cover" fills/crops; "contain" adds black bars.
 # video_clip_duration = 3
+# video_duration = 0                 # 0 follows narration; 1-90 sets final video seconds.
 # video_clip_speed = 1.0
 # video_count = 1
 # tts_server = "azure-tts-v1"

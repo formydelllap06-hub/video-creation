@@ -110,6 +110,8 @@
     "Static Image": "Sabit",
     "Slow Zoom": "Yavaş yakınlaştırma",
     "Image Motion Help": "Yalnızca sabit görüntüleri etkiler. Klip geçişleri ayrıca ayarlanır.",
+    "Final Video Duration": "Son video süresi (saniye; 0 = otomatik)",
+    "Final Video Duration Help": "1–90 saniye seçin veya anlatımı takip etmek için 0 seçin. Metni oluşturmadan önce süreyi seçin. Anlatım kısaysa görüntü ve müzik devam eder; uzunsa kesilir.",
     "Clip Duration": "Maks. Klip Süresi (sn.)",
     "Clip Duration Help": "Toplam video süresini değil, kullanılan her klibin süresini belirler.",
     "Clip Speed": "Klip Hızı",

@@ -691,6 +691,9 @@ def _initialize_session_state():
         "video_subject": "",
         "video_script": "",
         "video_terms": "",
+        "video_duration_input": _saved_ui_number(
+            "video_duration", 0, 0, const.MAX_VIDEO_DURATION, int
+        ),
         "paragraph_number_input": _saved_ui_number(
             "paragraph_number",
             1,
@@ -1565,6 +1568,7 @@ def _apply_restored_params(params):
     )
 
     # 视频设置。素材上传控件不能由服务端写入，因此本地素材需要用户重新选择。
+    st.session_state["video_duration_input"] = params.get("video_duration", 0)
     video_source = params.get("video_source") or "pexels"
     _set_stable_widget_value("video_source_select", video_source)
     _set_stable_widget_value(
@@ -4724,6 +4728,7 @@ def _render_local_script_generation(params):
                 video_script_prompt=params.video_script_prompt,
                 custom_system_prompt=params.custom_system_prompt,
                 app_config=app_config_snapshot,
+                **({"video_duration": params.video_duration} if params.video_duration else {}),
             )
             terms = llm.generate_terms(
                 params.video_subject,
@@ -5197,6 +5202,7 @@ def _render_script_settings(panel, params):
                                 paragraph_number=params.paragraph_number,
                                 video_script_prompt=params.video_script_prompt,
                                 custom_system_prompt=params.custom_system_prompt,
+                                video_duration=params.video_duration,
                             )
                         )
 
@@ -5254,6 +5260,16 @@ def _render_video_settings(panel, params):
     with panel:
         with st.container(border=True):
             st.write(tr("Video Settings"))
+            params.video_duration = st.number_input(
+                tr("Final Video Duration"),
+                min_value=0,
+                max_value=const.MAX_VIDEO_DURATION,
+                step=1,
+                key="video_duration_input",
+                help=tr("Final Video Duration Help"),
+            )
+            _set_runtime_config("ui", "video_duration", params.video_duration)
+            st.caption(tr("Final Video Duration Help"))
             video_concat_modes = [
                 (tr("Sequential"), "sequential"),
                 (tr("Random"), "random"),
@@ -5504,6 +5520,8 @@ def _render_video_settings(panel, params):
                         muapi.DEFAULT_MAX_DURATION_SECONDS + 1,
                     )
                 )
+            elif params.video_source in {"local", "pexels", "pixabay", "coverr", "openai_image"}:
+                video_clip_durations = list(range(1, const.MAX_VIDEO_DURATION + 1))
             else:
                 video_clip_durations = [2, 3, 4, 5, 6, 7, 8, 9, 10]
             params.video_clip_duration = stable_selectbox(
@@ -8624,6 +8642,9 @@ def _render_application():
     right_panel = panel[3]
 
     params = VideoParams(video_subject="")
+    # Script controls render before the video column; read the current widget
+    # state now so Generate Script uses the selected duration on this rerun.
+    params.video_duration = st.session_state.get("video_duration_input", 0)
     params.match_materials_to_script = bool(
         st.session_state.get("match_materials_to_script", False)
     )

@@ -1870,6 +1870,8 @@ def generate_video(
                 )
 
         final_video_clip = video_clip.with_audio(audio_clip)
+        if params.video_duration:
+            final_video_clip = final_video_clip.with_duration(params.video_duration)
         clip_stack.callback(final_video_clip.close)
         # 显式沿用输入音频的采样率；如果取不到，再回退 MoviePy 默认的 44100Hz。
         # 这样可以减少不同环境，尤其 Docker 中再次重采样带来的音质波动。

@@ -110,6 +110,8 @@
     "Static Image": "Diam",
     "Slow Zoom": "Perbesar perlahan",
     "Image Motion Help": "Hanya memengaruhi gambar diam. Transisi antarklip diatur secara terpisah.",
+    "Final Video Duration": "Durasi video akhir (detik; 0 = otomatis)",
+    "Final Video Duration Help": "Pilih 1–90 detik, atau 0 untuk mengikuti narasi. Pilih durasi sebelum membuat naskah. Jika narasi lebih pendek, gambar dan musik terus diputar; narasi yang lebih panjang dipotong.",
     "Clip Duration": "Durasi Maks. per Klip (detik)",
     "Clip Duration Help": "Menentukan durasi setiap klip yang digunakan, bukan durasi total video.",
     "Clip Speed": "Kecepatan Klip",

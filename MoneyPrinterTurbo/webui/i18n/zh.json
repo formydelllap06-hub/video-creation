@@ -114,6 +114,8 @@
     "Static Image": "静止",
     "Slow Zoom": "缓慢放大",
     "Image Motion Help": "仅影响图片素材；片段之间的转场需单独设置。",
+    "Final Video Duration": "成片时长（秒；0 = 自动）",
+    "Final Video Duration Help": "可设置为 1–90 秒，或选择 0 跟随配音时长。请先选择时长，再生成文案。配音不足时画面和配乐继续播放；超出部分将被截断。",
     "Clip Duration": "单个片段最大时长（秒）",
     "Clip Duration Help": "控制合成时使用的每个视频片段时长，不是视频总时长。",
     "Clip Speed": "片段播放速度",

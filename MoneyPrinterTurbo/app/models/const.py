@@ -1,3 +1,5 @@
+MAX_VIDEO_DURATION = 90
+
 PUNCTUATIONS = [
     "?",
     ",",

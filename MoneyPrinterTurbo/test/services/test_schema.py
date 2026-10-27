@@ -87,13 +87,13 @@ class TestVideoParams(unittest.TestCase):
         )
 
     def test_api_clip_duration_is_bounded_without_limiting_cli_params(self):
-        """The API keeps one clip within the WebUI provider duration range."""
+        """The API accepts local clips up to 90 seconds and rejects larger values."""
         self.assertEqual(
-            TaskVideoRequest(video_subject="Coffee", video_clip_duration=15).video_clip_duration,
-            15,
+            TaskVideoRequest(video_subject="Coffee", video_clip_duration=90).video_clip_duration,
+            90,
         )
         with self.assertRaises(ValidationError):
-            TaskVideoRequest(video_subject="Coffee", video_clip_duration=16)
+            TaskVideoRequest(video_subject="Coffee", video_clip_duration=91)
 
         self.assertEqual(
             VideoParams(video_subject="Coffee", video_clip_duration=16).video_clip_duration,

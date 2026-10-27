@@ -43,6 +43,13 @@ Ollama generates scripts and keyword lists through the app API, and FFmpeg expor
 H.264/AAC video with Edge narration and burned-in subtitles. Ollama reports the
 Qwen model running entirely on the NVIDIA GPU.
 
+The **Final Video Duration** control in Video Settings accepts 1–90 seconds;
+**0** follows narration. Choose a duration before generating the script. Short
+narration is padded with silence, and long narration is trimmed. Source footage
+loops as needed. **Maximum Clip Duration** is a separate control and now accepts
+1–90 seconds for local/stock/image footage. See `MoneyPrinterTurbo/LOCAL-SETUP.md`
+for CLI and API usage.
+
 Sample outputs:
 
 - NASA Earth clip with a Qwen-generated script:

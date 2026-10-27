@@ -104,6 +104,8 @@
     "Static Image": "Hərəkətsiz",
     "Slow Zoom": "Yavaş böyütmə",
     "Image Motion Help": "Yalnız şəkillərə təsir edir. Kliplərarası keçidlər ayrıca tənzimlənir.",
+    "Final Video Duration": "Yekun videonun müddəti (saniyə; 0 = avtomatik)",
+    "Final Video Duration Help": "1–90 saniyə seçin və ya səsləndirməyə uyğunlaşdırmaq üçün 0 seçin. Mətni yaratmazdan əvvəl müddəti seçin. Səsləndirmə qısa olduqda görüntü və musiqi davam edir; uzun olduqda kəsilir.",
     "Clip Duration": "Klipin maksimum müddəti (saniyə)",
     "Clip Duration Help": "Videonun ümumi müddətini deyil, kompozisiyada istifadə olunan hər klipin müddətini tənzimləyir.",
     "Clip Speed": "Klipin sürəti",

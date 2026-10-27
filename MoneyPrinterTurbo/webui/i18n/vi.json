@@ -110,6 +110,8 @@
     "Static Image": "Tĩnh",
     "Slow Zoom": "Phóng to chậm",
     "Image Motion Help": "Chỉ áp dụng cho ảnh tĩnh. Chuyển cảnh giữa các đoạn được cài đặt riêng.",
+    "Final Video Duration": "Thời lượng video cuối (giây; 0 = tự động)",
+    "Final Video Duration Help": "Chọn 1–90 giây hoặc 0 để theo thời lượng lời thuyết minh. Chọn thời lượng trước khi tạo kịch bản. Nếu lời thuyết minh ngắn, hình ảnh và nhạc tiếp tục phát; nếu dài, lời thuyết minh sẽ bị cắt.",
     "Clip Duration": "Thời Lượng Tối Đa Mỗi Clip (giây)",
     "Clip Duration Help": "Quy định thời lượng của từng clip được sử dụng, không phải tổng thời lượng video.",
     "Clip Speed": "Tốc độ clip",

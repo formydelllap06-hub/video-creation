@@ -110,6 +110,8 @@
     "Static Image": "Statica",
     "Slow Zoom": "Zoom lento",
     "Image Motion Help": "Si applica solo alle immagini fisse. Le transizioni tra clip si impostano separatamente.",
+    "Final Video Duration": "Durata del video finale (secondi; 0 = automatico)",
+    "Final Video Duration Help": "Scegli tra 1 e 90 secondi, oppure 0 per seguire la narrazione. Scegli la durata prima di generare il testo. Se la narrazione è breve, immagini e musica continuano; se è lunga, viene tagliata.",
     "Clip Duration": "Durata massima per clip (secondi)",
     "Clip Duration Help": "Controlla la durata di ciascuna clip utilizzata nella composizione, non la durata totale del video.",
     "Clip Speed": "Velocità della clip",

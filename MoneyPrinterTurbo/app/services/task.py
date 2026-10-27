@@ -34,6 +34,7 @@ from app.services import (
     video,
     volcengine_seedance,
     voice,
+    video_duration as duration_service,
 )
 from app.services import upload_post
 from app.services import state as sm
@@ -367,6 +368,7 @@ def generate_script(task_id, params):
             paragraph_number=params.paragraph_number,
             video_script_prompt=params.video_script_prompt,
             custom_system_prompt=params.custom_system_prompt,
+            **({"video_duration": params.video_duration} if getattr(params, "video_duration", 0) else {}),
         )
     else:
         logger.debug(f"video script: \n{video_script}")
@@ -1814,6 +1816,17 @@ def _run_pipeline(
         return {"subtitle_path": subtitle_path}
 
     sm.state.update_task(task_id, state=const.TASK_STATE_PROCESSING, progress=40)
+
+    # Adapt an owned narration copy after transcription so Whisper never has to
+    # transcribe padded silence. All full-video entry points share this path.
+    if params.video_duration:
+        try:
+            audio_file, subtitle_path = duration_service.prepare_timeline(
+                utils.task_dir(task_id), audio_file, subtitle_path, params.video_duration
+            )
+            audio_duration = params.video_duration
+        except (OSError, ValueError, RuntimeError) as exc:
+            return _mark_task_failed(task_id, "duration", str(exc))
 
     # 5. Get video materials
     downloaded_videos = get_video_materials(

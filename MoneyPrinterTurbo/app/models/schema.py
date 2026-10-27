@@ -6,6 +6,7 @@ import pydantic
 from pydantic import BaseModel, ConfigDict, Field
 
 from app.config import config
+from app.models.const import MAX_VIDEO_DURATION
 
 # 忽略 Pydantic 的特定警告
 warnings.filterwarnings(
@@ -117,6 +118,8 @@ class VideoParams(BaseModel):
     video_concat_mode: Optional[VideoConcatMode] = VideoConcatMode.random.value
     video_transition_mode: Optional[VideoTransitionMode] = None
     video_clip_duration: int = Field(default=5, ge=1)
+    # 0 preserves the original narration-length workflow.
+    video_duration: int = Field(default=0, ge=0, le=MAX_VIDEO_DURATION)
     video_clip_speed: Optional[float] = 1.0
     match_materials_to_script: bool = False
     video_count: int = Field(default=1, ge=1)
@@ -220,6 +223,7 @@ class VideoScriptParams:
     """
 
     video_subject: Optional[str] = "春天的花海"
+    video_duration: int = Field(default=0, ge=0, le=MAX_VIDEO_DURATION)
     video_language: Optional[str] = ""
     paragraph_number: int = Field(default=1, ge=1, le=10)
     video_script_prompt: str = Field(default="", max_length=2000)
@@ -264,7 +268,7 @@ class TaskVideoRequest(VideoParams, BaseModel):
     # Bound API resource requests while leaving the CLI's explicit batch and
     # FFmpeg thread controls in VideoParams unchanged.
     video_count: int = Field(default=1, ge=1, le=5)
-    video_clip_duration: int = Field(default=5, ge=1, le=15)
+    video_clip_duration: int = Field(default=5, ge=1, le=MAX_VIDEO_DURATION)
     n_threads: Optional[int] = Field(default=2, ge=1, le=16)
 
 

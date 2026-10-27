@@ -466,6 +466,12 @@ Batch manifests:
         help="transition applied between source clips (default: none)",
     )
     video_group.add_argument(
+        "--video-duration",
+        type=int,
+        default=None,
+        help="final video duration in seconds, 1-90; 0 follows narration (default: 0)",
+    )
+    video_group.add_argument(
         "--video-clip-duration",
         type=_positive_int,
         default=None,
@@ -976,6 +982,7 @@ def build_video_params(args: argparse.Namespace) -> VideoParams:
         "video_concat_mode",
         "video_transition_mode",
         "video_clip_duration",
+        "video_duration",
         "video_clip_speed",
         "match_materials_to_script",
         "n_threads",

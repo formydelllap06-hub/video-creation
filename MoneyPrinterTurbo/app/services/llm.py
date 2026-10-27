@@ -862,6 +862,7 @@ def build_script_prompt(
     paragraph_number: int = 1,
     video_script_prompt: str = "",
     custom_system_prompt: str = "",
+    video_duration: int = 0,
 ) -> str:
     paragraph_number = _normalize_script_paragraph_number(paragraph_number)
     video_script_prompt = _limit_script_text(
@@ -889,6 +890,21 @@ def build_script_prompt(
 {video_script_prompt}
 """.rstrip()
 
+    if video_duration:
+        from app.models.const import MAX_VIDEO_DURATION
+
+        if not 1 <= video_duration <= MAX_VIDEO_DURATION:
+            raise ValueError(f"video_duration must be between 0 and {MAX_VIDEO_DURATION}")
+        words = max(2, round(video_duration * 2.3))
+        prompt += (
+            f"\n\n# Narration duration:\n"
+            f"Write a complete narration for approximately {video_duration} seconds. "
+            f"Aim for about {words} spoken words at a natural pace "
+            "(use the equivalent spoken length for the requested language). "
+            "Cover the topic throughout that time, with a clear ending. "
+            "Return only the narration, without timing labels or stage directions."
+        )
+
     return prompt
 
 
@@ -899,6 +915,7 @@ def generate_script(
     video_script_prompt: str = "",
     custom_system_prompt: str = "",
     app_config=None,
+    video_duration: int = 0,
 ) -> str:
     paragraph_number = _normalize_script_paragraph_number(paragraph_number)
     video_script_prompt = _limit_script_text(
@@ -913,6 +930,7 @@ def generate_script(
         paragraph_number=paragraph_number,
         video_script_prompt=video_script_prompt,
         custom_system_prompt=custom_system_prompt,
+        video_duration=video_duration,
     )
     final_script = ""
     logger.info(
